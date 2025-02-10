@@ -1,0 +1,8 @@
+# Habilitar mod_rewrite
+RewriteEngine On
+
+# Establecer la base del directorio para las URLs reescritas
+RewriteBase /TourMztServices/
+
+# Reescribir la URL 'Api/ListRouts' a 'Services/AllRutas.php'
+RewriteRule ^Api/AllRutas$ Services/AllRutas.php [L]
