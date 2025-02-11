@@ -1,0 +1,29 @@
+# Habilitar mod_rewrite
+RewriteEngine On
+
+# Establecer la base del directorio para las URLs reescritas
+# Esta base se adapta dependiendo de si estamos en producción o desarrollo
+
+# Si estás en producción, esto funcionará sin necesidad de la carpeta TourMztServices en la URL
+RewriteBase /TourMztServices/
+
+# Redirigir 'index' a 'index.php'
+RewriteRule ^index$ index.html [L]
+
+# Redirigir cualquier acceso a la raíz a 'index.php'
+RewriteRule ^$ index.html [L]
+
+# Reescribir la URL 'Api/AllRutas' a 'Services/AllRutas.php'
+RewriteRule ^Api/AllRutas$ Services/AllRutas.php [L]
+
+# Reescribe 'Api/OneRuta/{idRuta}' a 'Services/OneRuta.php?idRuta={idRuta}'
+RewriteRule ^Api/OneRuta/([0-9]+)$ Services/OneRuta.php?idRuta=$1 [L,QSA]
+
+# Reescribe 'Api/AllParadasRuta/{idRuta}' a 'Services/AllParadasRuta.php?idRuta={idRuta}'
+RewriteRule ^Api/AllParadasRuta/([0-9]+)$ Services/AllParadasRuta.php?idRuta=$1 [L,QSA]
+
+# Reescribir la URL 'Api/AllRutasNew' a 'Services/AllRutasNew.php'
+RewriteRule ^Api/AllRutasNew$ Services/AllRutasNew.php [L]
+
+# Reescribir la URL 'Api/AllRutasUpdate' a 'Services/AllRutasUpdate.php'
+RewriteRule ^Api/AllRutasUpdate$ Services/AllRutasUpdate.php [L]
