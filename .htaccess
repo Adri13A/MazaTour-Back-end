@@ -18,3 +18,9 @@ RewriteRule ^Api/AllRutas$ Services/AllRutas.php [L]
 
 # Reescribe 'Api/OneRuta/{idRuta}' a 'Services/OneRuta.php?idRuta={idRuta}'
 RewriteRule ^Api/OneRuta/([0-9]+)$ Services/OneRuta.php?idRuta=$1 [L,QSA]
+
+# Reescribe 'Api/AllParadasRuta/{idRuta}' a 'Services/AllParadasRuta.php?idRuta={idRuta}'
+RewriteRule ^Api/AllParadasRuta/([0-9]+)$ Services/AllParadasRuta.php?idRuta=$1 [L,QSA]
+
+# Reescribir la URL 'Api/AllRutasNew' a 'Services/AllRAllRutasNewutas.php'
+RewriteRule ^Api/AllRutasNew$ Services/AllRutasNew.php [L]

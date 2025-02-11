@@ -21,23 +21,23 @@
                             tblrutas. idRuta, nombreRuta, frecuencia, salidaDestino, idEstado, idTipoRuta,
                             COALESCE(GROUP_CONCAT(DISTINCT tblparadas.nombreParada ORDER BY tblparadas.nombreParada SEPARATOR ', '), 'Aún falta capturar') AS nombreParadas,
                             COALESCE(GROUP_CONCAT(DISTINCT tblcolonias.nombreColonia ORDER BY tblcolonias.nombreColonia SEPARATOR ', '), 'Aún falta capturar') AS nombreColonias
-                        FROM 
-                            tblrutas
-                        LEFT JOIN 
-                            tblparadasruta ON tblrutas.idRuta = tblparadasruta.idRuta
-                        LEFT JOIN 
-                            tblparadas ON tblparadasruta.idParada = tblparadas.idParada
-                        LEFT JOIN 
-                            tblcolinasrutas ON tblrutas.idRuta = tblcolinasrutas.idRuta
-                        LEFT JOIN
-                            tblcolonias ON tblcolinasrutas.idColonia = tblcolonias.idColonia
-                        GROUP BY 
-                            tblrutas.idRuta, 
-                            tblrutas.nombreRuta, 
-                            tblrutas.salidaDestino, 
-                            tblrutas.idEstado;
+                            FROM 
+                                tblrutas
+                            LEFT JOIN 
+                                tblparadasruta ON tblrutas.idRuta = tblparadasruta.idRuta
+                            LEFT JOIN 
+                                tblparadas ON tblparadasruta.idParada = tblparadas.idParada
+                            LEFT JOIN 
+                                tblcolinasrutas ON tblrutas.idRuta = tblcolinasrutas.idRuta
+                            LEFT JOIN
+                                tblcolonias ON tblcolinasrutas.idColonia = tblcolonias.idColonia
+                            GROUP BY 
+                                tblrutas.idRuta, 
+                                tblrutas.nombreRuta, 
+                                tblrutas.salidaDestino, 
+                                tblrutas.idEstado;
 
-                        ");
+                            ");
 
                 $statement = $this->PDO->prepare($query);
                 $statement->execute();
@@ -78,8 +78,7 @@
         public function allParadasRutas($idRuta) {
 
             try {
-                $query = ("SELECT 
-                            tblparadasruta.*, tblparadas.*
+                $query = ("SELECT tblparadasruta.*, tblparadas.*
                             FROM tblparadasruta
                             JOIN tblparadas ON tblparadasruta.idParada = tblparadas.idParada
                             WHERE tblparadasruta.idRuta = :idRuta;
@@ -106,9 +105,10 @@
                 // Ajuste de fecha de vencimiento a 7 días antes
                 $fechaVencimiento = date('Y-m-d H:i:s', strtotime('-7 days', strtotime($fechaActual)));
 
-                $query = "SELECT * FROM tblrutas 
-                          WHERE fechaActualizacion > :fechaVencimiento 
-                          AND fechaActualizacion <> '0000-00-00 00:00:00'";
+                $query = "SELECT idRuta,nombreRuta,frecuencia,salidaDestino,idTipoRuta,idEstado
+                            FROM tblrutas 
+                            WHERE fechaActualizacion > :fechaVencimiento 
+                            AND fechaActualizacion <> '0000-00-00 00:00:00'";
 
                 $statement = $this->PDO->prepare($query);
                 $statement->bindParam(':fechaVencimiento', $fechaVencimiento);
@@ -131,10 +131,11 @@
                 // Ajuste de fecha de vencimiento a 7 días antes
                 $fechaVencimiento = date('Y-m-d H:i:s', strtotime('-7 days', strtotime($fechaActual)));
 
-                $query = "SELECT * FROM tblrutas 
-                          WHERE fechaCreacion IS NOT NULL 
-                          AND fechaActualizacion = '0000-00-00 00:00:00' 
-                          AND fechaCreacion > :fechaVencimiento";
+                $query = "SELECT idRuta,nombreRuta,frecuencia,salidaDestino,idTipoRuta,idEstado
+                            FROM tblrutas 
+                            WHERE fechaCreacion IS NOT NULL 
+                            AND fechaActualizacion = '0000-00-00 00:00:00' 
+                            AND fechaCreacion > :fechaVencimiento";
 
                 $statement = $this->PDO->prepare($query);
                 $statement->bindParam(':fechaVencimiento', $fechaVencimiento);

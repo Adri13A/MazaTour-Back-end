@@ -1,7 +1,5 @@
 <?php
-     include('../Config/BasePath.php');
-
-
+    include('../Config/BasePath.php');
     return [
             $baseUrl . "/Api/OneRuta/{idRuta}" => [
             "get" => [

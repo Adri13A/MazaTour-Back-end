@@ -14,10 +14,10 @@
     }
 
     $idRuta = $_GET['idRuta'];
-    $selectOneRuta = new ControllerRutas();
+    $selectAllParadasRutas = new ControllerRutas();
 
     try {
-        $rutas = $selectOneRuta->selectOneRuta($idRuta);
+        $rutas = $selectAllParadasRutas->selectAllParadasRutas($idRuta);
         
         if ($rutas) {
             echo json_encode([
@@ -27,7 +27,7 @@
         } else {
             echo json_encode([
                 "success" => false,
-                "message" => "No se encontro la información de la ruta."
+                "message" => "No se encontraron paradas de la ruta."
             ], JSON_PRETTY_PRINT);
         }
 

@@ -2,6 +2,8 @@
     header('Content-Type: application/json');
     $allRutasDoc = include('../Documentation/AllRutas.php');
     $oneRutaDoc = include('../Documentation/OneRuta.php');
+    $allParadasRutaDoc = include('../Documentation/AllParadasRuta.php');
+    $allRutasNewDoc = include('../Documentation/AllRutasNew.php');
 
 
     $api_spec = [
@@ -18,7 +20,7 @@
                 "description" => "Endpoints relacionados con rutas"
             ]
         ],
-        "paths" => array_merge($allRutasDoc, $oneRutaDoc) // Fusionamos ambos arrays
+        "paths" => array_merge($allRutasDoc, $oneRutaDoc, $allParadasRutaDoc, $allRutasNewDoc)
     ];
 
     echo json_encode($api_spec, JSON_PRETTY_PRINT);
