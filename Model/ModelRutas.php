@@ -83,7 +83,6 @@
                             FROM tblparadasruta
                             JOIN tblparadas ON tblparadasruta.idParada = tblparadas.idParada
                             WHERE tblparadasruta.idRuta = :idRuta;
-
                         ");
 
                 $statement = $this->PDO->prepare($query);

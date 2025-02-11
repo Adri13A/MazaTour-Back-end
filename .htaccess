@@ -7,11 +7,14 @@ RewriteEngine On
 # Si estás en producción, esto funcionará sin necesidad de la carpeta TourMztServices en la URL
 RewriteBase /TourMztServices/
 
-# Reescribir la URL 'Api/AllRutas' a 'Services/AllRutas.php'
-RewriteRule ^Api/AllRutas$ Services/AllRutas.php [L]
-
 # Redirigir 'index' a 'index.php'
 RewriteRule ^index$ index.html [L]
 
 # Redirigir cualquier acceso a la raíz a 'index.php'
 RewriteRule ^$ index.html [L]
+
+# Reescribir la URL 'Api/AllRutas' a 'Services/AllRutas.php'
+RewriteRule ^Api/AllRutas$ Services/AllRutas.php [L]
+
+# Reescribe 'Api/OneRuta/{idRuta}' a 'Services/OneRuta.php?idRuta={idRuta}'
+RewriteRule ^Api/OneRuta/([0-9]+)$ Services/OneRuta.php?idRuta=$1 [L,QSA]

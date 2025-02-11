@@ -1,10 +1,11 @@
 <?php
-     include('../Config/base.php');
+     include('../Config/BasePath.php');
 
 
     return [
         $baseUrl . "/Api/AllRutas" => [
             "get" => [
+                "tags" => ["Rutas"],
                 "summary" => "Obtener todas las rutas",
                 "operationId" => "AllRutas",
                 "responses" => [
